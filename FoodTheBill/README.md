@@ -1,4 +1,4 @@
-# milestone1
+# FoodTheBill
 
 A new Flutter project.
 
