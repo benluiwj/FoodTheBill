@@ -9,7 +9,7 @@ class Cuisines {
 
   Cuisines() {
     cuisines = [placeHolder, western, chinese, indian, malay];
-    curr = null;
+    curr = placeHolder;
   }
 
   List<String>? getCuisines() {

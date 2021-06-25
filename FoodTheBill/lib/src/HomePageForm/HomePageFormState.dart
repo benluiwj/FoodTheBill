@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:milestone1/Second%20page/recommended.dart';
+import '../SecondPage/recommended.dart';
 import './FoodQuery.dart';
 import 'HomePageForm.dart';
 import 'Cuisines.dart';
@@ -41,10 +41,10 @@ class HomePageFormState extends State<HomePageForm> {
   }
 
   Widget dropDownField(String val) {
-    List<String> res;
-    if (val == 'Cuisine')
-      res = _query.cuisines!.getCuisines()!;
-    else
+    List<String>? res;
+    if (val == 'Cuisine') {
+      res = _query.cuisine!.getCuisines()!;
+    } else
       res = _query.price!.getPrices()!;
 
     String dropDownValue = res.elementAt(0);
@@ -55,7 +55,7 @@ class HomePageFormState extends State<HomePageForm> {
             padding: EdgeInsets.symmetric(horizontal: 64, vertical: 16),
             child: DropdownButtonFormField<String>(
                 validator: (value) {
-                  if (value == res.elementAt(0))
+                  if (value == res!.elementAt(0))
                     return "Please enter ${val.toLowerCase()}";
                   return null;
                 },
@@ -100,10 +100,12 @@ class HomePageFormState extends State<HomePageForm> {
             if (_formKey.currentState!.validate()) {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => Recommended(
-                          query: _query,
-                        )),
+                MaterialPageRoute(builder: (context) {
+                  return Recommended(
+                    query: _query,
+                  );
+                  //return GoNext();
+                }),
               );
             }
           }),

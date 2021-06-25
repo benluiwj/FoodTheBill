@@ -4,12 +4,12 @@ import './PriceRanges.dart';
 class FoodQuery {
   String? location;
   Cuisines? cuisine;
+  Cuisines? cuisineChoices = Cuisines();
   PriceRanges? price;
-  Cuisines? cuisines = Cuisines();
   PriceRanges? priceRanges = PriceRanges();
 
   FoodQuery({this.location, this.cuisine, this.price}) {
-    this.cuisine = cuisines;
+    this.cuisine = cuisineChoices;
     this.price = priceRanges;
   }
 

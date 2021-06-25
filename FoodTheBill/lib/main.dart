@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'First page/firstpage.dart';
-import 'Second page/recommended.dart';
+import 'package:milestone1/src/Secondpage/SecondPage.dart';
+import 'src/Firstpage/firstpage.dart';
 
-void main() => runApp(App());
+void main() {
+  runApp(App());
+}
 
 class App extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class AppState extends State<App> {
       initialRoute: '/',
       routes: {
         '/': (context) => FirstPage(),
-        '/second': (context) => Recommended(),
+        '/second': (context) => SecondPage()
       },
     );
   }

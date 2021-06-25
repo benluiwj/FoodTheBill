@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import '../HomePageForm/HomePageForm.dart';
 
-import './foodthebill.dart';
+import 'foodthebill.dart';
 
 class FirstPage extends StatelessWidget {
   @override
