@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 
-class FoodTheBill extends StatelessWidget {
-  FoodTheBill();
-
+class IntroText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(top: 80),
+      margin: EdgeInsets.only(top: 10),
       child: Text(
-        "FoodTheBill",
+        'Helping to make the food decision for you!',
         style: TextStyle(
-          fontSize: 40,
-          fontWeight: FontWeight.bold,
+          fontWeight: FontWeight.w400,
+          fontSize: 20,
           fontStyle: FontStyle.italic,
         ),
         textAlign: TextAlign.center,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:milestone1/Second%20page/recommended.dart';
-import './FoodQuery.dart';
+import '../../RandomOrInputPage/RandomOrInputPageWidget.dart';
+import 'FoodQuery.dart';
 import 'HomePageForm.dart';
 import 'Cuisines.dart';
 import 'PriceRanges.dart';
@@ -11,7 +11,7 @@ class HomePageFormState extends State<HomePageForm> {
   final formFieldController = TextEditingController();
   Cuisines cuisines = Cuisines();
   PriceRanges price = PriceRanges();
-  FoodQuery _query = new FoodQuery();
+  FoodQuery _query = FoodQuery();
 
   @override
   void dispose() {
@@ -101,7 +101,7 @@ class HomePageFormState extends State<HomePageForm> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => Recommended(
+                    builder: (context) => RandomOrInputPageWidget(
                           query: _query,
                         )),
               );

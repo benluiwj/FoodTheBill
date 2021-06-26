@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HelpMe extends StatelessWidget {
-  //final Function selectHandler;
-  // final String locationText;
-  // final String cuisineText;
-  // final String priceRangeText;
-
-  //HelpMe(this.locationText, this.cuisineText, this.priceRangeText);
-
+class HelpMeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
