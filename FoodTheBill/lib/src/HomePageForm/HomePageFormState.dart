@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import '../SecondPage/recommended.dart';
+import 'package:milestone1/src/Secondpage/Body.dart';
 import './FoodQuery.dart';
 import 'HomePageForm.dart';
-import 'Cuisines.dart';
-import 'PriceRanges.dart';
 
 class HomePageFormState extends State<HomePageForm> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> _inputs = ['Your Location', 'Cuisine', 'Price Range'];
+  final List<String> _inputs = [
+    'Your Location',
+    'Cuisine',
+    'Distance to restaurant',
+    'Price Range'
+  ];
   final formFieldController = TextEditingController();
-  Cuisines cuisines = Cuisines();
-  PriceRanges price = PriceRanges();
+  //Cuisines cuisines = Cuisines();
+  //PriceRanges price = PriceRanges();
   FoodQuery _query = new FoodQuery();
 
   @override
@@ -44,8 +47,11 @@ class HomePageFormState extends State<HomePageForm> {
     List<String>? res;
     if (val == 'Cuisine') {
       res = _query.cuisine!.getCuisines()!;
-    } else
+    } else if (val == 'Price Range') {
       res = _query.price!.getPrices()!;
+    } else {
+      res = _query.distance!.getDistances()!;
+    }
 
     String dropDownValue = res.elementAt(0);
 
@@ -66,8 +72,10 @@ class HomePageFormState extends State<HomePageForm> {
                   });
                   if (val == 'Cuisine')
                     _query.setCuisine(dropDownValue);
-                  else
+                  else if (val == 'Price Range')
                     _query.setPrice(dropDownValue);
+                  else
+                    _query.setDistance(dropDownValue);
                 },
                 items: res.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
@@ -101,9 +109,10 @@ class HomePageFormState extends State<HomePageForm> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  return Recommended(
+                  /*return Recommended(
                     query: _query,
-                  );
+                  );*/
+                  return Body(query: _query);
                   //return GoNext();
                 }),
               );
@@ -121,6 +130,7 @@ class HomePageFormState extends State<HomePageForm> {
             formField(_inputs[0]),
             dropDownField(_inputs[1]),
             dropDownField(_inputs[2]),
+            dropDownField(_inputs[3]),
             submitButton(),
           ],
         ));

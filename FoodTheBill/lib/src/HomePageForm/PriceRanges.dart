@@ -2,14 +2,14 @@ class PriceRanges {
   List<String>? pricerange;
   String? curr;
   String placeHolder = "Price Range";
-  String cheapest = "Less than \$5";
-  String cheaper = "More than \$5, less than \$10";
-  String cheap = "More than \$10, less than \$20";
-  String expensive = "More than \$20";
+  String cheapest = "Not expensive";
+  String cheaper = "Normal";
+  String cheap = "Expensive";
+  String expensive = "Very expensive";
 
   PriceRanges() {
     pricerange = [placeHolder, cheapest, cheaper, cheap, expensive];
-    curr = null;
+    curr = placeHolder;
   }
   List<String>? getPrices() {
     return pricerange;
@@ -17,5 +17,9 @@ class PriceRanges {
 
   String? getCurr() {
     return curr;
+  }
+
+  int getPriceLevel() {
+    return pricerange!.indexOf(curr!);
   }
 }
