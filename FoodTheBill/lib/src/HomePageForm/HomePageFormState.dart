@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:milestone1/src/Secondpage/Body.dart';
+import 'package:milestone1/src/Secondpage/SecondPageBody.dart';
 import './FoodQuery.dart';
 import 'HomePageForm.dart';
 

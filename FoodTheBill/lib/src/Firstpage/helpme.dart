@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:milestone1/src/Secondpage/SecondScreen.dart';
 
 class HelpMe extends StatelessWidget {
   @override
@@ -21,7 +22,9 @@ class HelpMe extends StatelessWidget {
           primary: Colors.black,
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/second');
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return SecondScreen();
+          }));
         },
       ),
     );
