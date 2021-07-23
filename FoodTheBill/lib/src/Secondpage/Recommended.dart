@@ -111,7 +111,9 @@ class RecommendedState extends State<Recommended> {
             } else {
               listOfRestaurants = snapshot.data!.results;
               int length = listOfRestaurants!.length;
-              return Text(snapshot.data!.results[index.nextInt(length)].name);
+              int randomNum = index.nextInt(length);
+              return buildTile(randomNum, snapshot);
+              //return Text(snapshot.data!.results[index.nextInt(length)].name);
             }
           }),
       ElevatedButton(
