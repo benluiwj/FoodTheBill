@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:milestone1/src/HomePageForm/FoodQuery.dart';
 import 'package:milestone1/src/ProfilePage/ProfileScreen.dart';
 import 'package:milestone1/src/Secondpage/SecondPageHeader.dart';
-import 'package:milestone1/src/Secondpage/Recommended.dart';
+//import 'package:milestone1/src/Secondpage/Recommendation.dart';
+import 'RecommendationSingle.dart';
+import 'RecommendationList.dart';
 
 /// This class contains the layout of the second page of the app.
 
@@ -33,6 +35,48 @@ class SecondPage extends StatelessWidget {
         });
   }
 
+  Widget singleRecommend(BuildContext context) {
+    return ElevatedButton(
+        child: Text(
+          "single recommend",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            letterSpacing: 2.0,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.black,
+        ),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return RecommendationSingle(query: query);
+          }));
+        });
+  }
+
+  Widget listRecommend(BuildContext context) {
+    return ElevatedButton(
+        child: Text(
+          "list recommend",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            letterSpacing: 2.0,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.black,
+        ),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return RecommendationList(query: query);
+          }));
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +91,10 @@ class SecondPage extends StatelessWidget {
             top: false,
             child: Column(children: [
               Header(),
-              Recommended(query: this.query),
-              profileButton(context)
+              singleRecommend(context),
+              listRecommend(context),
+              //Recommended(query: this.query),
+              //profileButton(context)
             ]),
           ),
         ));

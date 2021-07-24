@@ -45,4 +45,9 @@ class FoodQuery {
   void setDistance(String distance) {
     this.distance!.curr = distance;
   }
+
+  @override
+  String toString() {
+    return "${this.cuisine} , ${this.price} , ${this.distance}";
+  }
 }
