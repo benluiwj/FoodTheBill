@@ -8,6 +8,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../HomePageForm/FoodQuery.dart';
 import '.././ErrorPage.dart';
 
+/// This class initialises the state that deals with user input from the form
+
 class Recommended extends StatefulWidget {
   final FoodQuery? query;
   Recommended({Key? key, this.query}) : super(key: key);
@@ -20,6 +22,10 @@ class Recommended extends StatefulWidget {
   }
 }
 
+/// This class contains the logic for dealing with the input from the user,
+/// as well as displaying the info, based on whether the user prefers a single
+/// recommendation or a list of recommendations
+
 class RecommendedState extends State<Recommended> {
   final String apiKey = "AIzaSyAso_tOsxE6y4X7fPcpWiwUZt6SiDPstO8";
   FoodQuery? query;
@@ -29,6 +35,9 @@ class RecommendedState extends State<Recommended> {
   late Future<GeocodingResponse> currLocation;
   List<PlacesSearchResult>? listOfRestaurants;
 
+  /// Begins the logic handling by initialising the relevant APIs, as well as
+  /// obtaining the current locations and the list of restaurants
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +46,9 @@ class RecommendedState extends State<Recommended> {
     currLocation = fetchCoords();
     restaurants = fetchRestaurants();
   }
+
+  /// Returns a future containing a list of restaurants based on the user
+  /// input from the form. If there are no results, an exception is thrown
 
   Future<PlacesSearchResponse> fetchRestaurants() async {
     try {
@@ -53,11 +65,17 @@ class RecommendedState extends State<Recommended> {
     }
   }
 
+  /// Returns a future of the location input by the user
+
   Future<GeocodingResponse> fetchCoords() async {
     GeocodingResponse result =
         await geocoding.searchByAddress(query!.location!);
     return result;
   }
+
+  /// Builds a list tile that contains a result from the list of restaurant results.
+  /// The index parameter indicates the index of the results to be returned in the tile.
+  /// The snapshot parameter contains the list of results.
 
   Widget buildTile(int index, AsyncSnapshot<PlacesSearchResponse> snapshot) {
     PlacesSearchResult result = snapshot.data!.results[index];
@@ -82,24 +100,12 @@ class RecommendedState extends State<Recommended> {
     ]);
   }
 
+  /// Returns a widget containing a single recommendation. Currently,
+  /// the layout of the widget is a single recommendation displayed as a list tile,
+  /// and a button "Others" that allows users to view the list of recommendations instead
+
   Widget randomOption() {
-    //return Scaffold(
-    //body:
     return Column(children: [
-      /*AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white10,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(
-            "FoodTheBill",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic,
-            ),
-            textAlign: TextAlign.center,
-          )),*/
       FutureBuilder<PlacesSearchResponse>(
           future: restaurants,
           builder: (context, snapshot) {
@@ -113,7 +119,6 @@ class RecommendedState extends State<Recommended> {
               int length = listOfRestaurants!.length;
               int randomNum = index.nextInt(length);
               return buildTile(randomNum, snapshot);
-              //return Text(snapshot.data!.results[index.nextInt(length)].name);
             }
           }),
       ElevatedButton(
@@ -137,13 +142,11 @@ class RecommendedState extends State<Recommended> {
     ]);
   }
 
+  /// Returns an app bar for the list of recommendations
+
   Widget appBar() {
     return SliverAppBar(
-      /*floating: false,
-        pinned: false,
-        snap: false,*/
       pinned: true,
-      //title: Text("this is title"),
       backgroundColor: Colors.white,
       iconTheme: IconThemeData(color: Colors.black),
       flexibleSpace: FlexibleSpaceBar(
@@ -153,12 +156,13 @@ class RecommendedState extends State<Recommended> {
             style: TextStyle(
                 color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center),
-        //titlePadding:
-        //  EdgeInsetsDirectional.only(bottom: 100, start: 40, end: 40),
       ),
       expandedHeight: 100,
     );
   }
+
+  /// Returns a widget that displays the list of recommendations based on the
+  /// user input
 
   Widget resultList() {
     if (listOfRestaurants == null || listOfRestaurants!.length == 0)
@@ -174,14 +178,15 @@ class RecommendedState extends State<Recommended> {
             builder: (context, snapshot) {
               if (snapshot.data == null) {
                 return Text("Loading...");
-                /*else if (snapshot.data!.results.length == 0) {
-                return LocationErrorScreen();*/
               } else {
                 return buildTile(index, snapshot);
               }
             });
       }, childCount: listOfRestaurants!.length));
   }
+
+  /// Returns a widget that contains the app bar for the list of recommendations,
+  /// as well as the list itself
 
   Widget listOfRecommendations() {
     return Scaffold(
@@ -190,7 +195,6 @@ class RecommendedState extends State<Recommended> {
 
   @override
   Widget build(BuildContext context) {
-    //return Recommendations(this);
     return randomOption();
   }
 }

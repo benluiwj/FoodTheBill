@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import './/SizeConfig.dart';
+
+/// This class contains the header for the second page of the app
 
 class Header extends StatelessWidget {
+  final double coverImageHeight = 315;
+  final double titleBoxHeight = 80;
+  final double titleFontSize = 55;
+  final double padding = 25;
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(bottom: getProportionateScreenWidth(25)),
+        padding: EdgeInsets.only(bottom: padding),
         child: Column(children: [
           Stack(
             clipBehavior: Clip.none,
@@ -15,16 +20,16 @@ class Header extends StatelessWidget {
                 "assets/HomePageBackGround.jpg",
                 fit: BoxFit.cover,
                 width: double.infinity,
-                height: getProportionateScreenHeight(315),
+                height: coverImageHeight,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: getProportionateScreenHeight(80)),
+                  SizedBox(height: titleBoxHeight),
                   Text(
                     "FoodTheBill",
                     style: TextStyle(
-                        fontSize: getProportionateScreenWidth(55),
+                        fontSize: titleFontSize,
                         fontWeight: FontWeight.bold,
                         height: 0.5),
                   ),

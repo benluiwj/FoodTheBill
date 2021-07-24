@@ -4,11 +4,13 @@ import 'package:milestone1/src/ProfilePage/ProfileScreen.dart';
 import 'package:milestone1/src/Secondpage/SecondPageHeader.dart';
 import 'package:milestone1/src/Secondpage/Recommended.dart';
 
-import '../../SizeConfig.dart';
+/// This class contains the layout of the second page of the app.
 
-class Body extends StatelessWidget {
+class SecondPage extends StatelessWidget {
   final FoodQuery? query;
-  Body({Key? key, this.query}) : super(key: key);
+  SecondPage({Key? key, this.query}) : super(key: key);
+
+  /// Returns a widget that brings the user to their profile page
 
   Widget profileButton(BuildContext context) {
     return ElevatedButton(
@@ -33,7 +35,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(

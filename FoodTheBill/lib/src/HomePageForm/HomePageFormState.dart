@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:milestone1/src/Secondpage/SecondPageBody.dart';
+import 'package:milestone1/src/Secondpage/SecondPage.dart';
 import './FoodQuery.dart';
 import 'HomePageForm.dart';
+
+/// This class contains the main logic of the form to be filled in by users
 
 class HomePageFormState extends State<HomePageForm> {
   final _formKey = GlobalKey<FormState>();
@@ -12,15 +14,18 @@ class HomePageFormState extends State<HomePageForm> {
     'Price Range'
   ];
   final formFieldController = TextEditingController();
-  //Cuisines cuisines = Cuisines();
-  //PriceRanges price = PriceRanges();
   FoodQuery _query = new FoodQuery();
+
+  /// Disposing the form controller once it is done
 
   @override
   void dispose() {
     formFieldController.dispose();
     super.dispose();
   }
+
+  /// Returns a widget that displays the current value selected by the user.
+  /// This widget is meant for users to input in a location.
 
   Widget formField(String value) {
     return Container(
@@ -42,6 +47,11 @@ class HomePageFormState extends State<HomePageForm> {
       ),
     );
   }
+
+  /// Returns a widget that changes the display based on what the user
+  /// has selected from the drop down list of options.
+  /// For example, there are 4 valid cuisine choices. When the user selects one of them,
+  /// that choice would be displayed in the widget.
 
   Widget dropDownField(String val) {
     List<String>? res;
@@ -85,6 +95,8 @@ class HomePageFormState extends State<HomePageForm> {
                 }).toList())));
   }
 
+  /// Returns a widget that brings the user to the next page
+
   Widget submitButton() {
     return Container(
       width: double.infinity,
@@ -112,7 +124,7 @@ class HomePageFormState extends State<HomePageForm> {
                   /*return Recommended(
                     query: _query,
                   );*/
-                  return Body(query: _query);
+                  return SecondPage(query: _query);
                   //return GoNext();
                 }),
               );
@@ -120,6 +132,8 @@ class HomePageFormState extends State<HomePageForm> {
           }),
     );
   }
+
+  /// Returns a widget that returns a form together with a submission button
 
   @override
   Widget build(BuildContext context) {

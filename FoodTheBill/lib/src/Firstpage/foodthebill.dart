@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// This widget contains the title text of the initial
+/// page after a user has logged into app.
+
 class FoodTheBill extends StatelessWidget {
   FoodTheBill();
 

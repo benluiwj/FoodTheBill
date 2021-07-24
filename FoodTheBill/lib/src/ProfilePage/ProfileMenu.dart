@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+/// This class contains the format for the profile menu items
+
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu(
       {Key? key, required this.text, required this.icon, required this.press})

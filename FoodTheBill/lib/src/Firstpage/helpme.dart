@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:milestone1/src/Secondpage/SecondScreen.dart';
+import 'package:milestone1/src/Secondpage/SecondPage.dart';
+
+/// This widget consists of the submission button of the form.
+/// When a user presses it, they will be redirected to the main page,
+/// where they can choose between a single recommendation or pick from a list of
+/// recommendations
 
 class HelpMe extends StatelessWidget {
   @override
@@ -23,7 +28,7 @@ class HelpMe extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return SecondScreen();
+            return SecondPage();
           }));
         },
       ),

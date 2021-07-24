@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// This class contains the basic formatting of the profile image of the user
+
 class ProfilePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:milestone1/src/ProfilePage/ProfilePic.dart';
 import 'ProfileMenu.dart';
 
+/// This class contains the options that the user can select on their profile page.
+/// Such options include their favorited locations as well as logging out of the app
+
 class ProfileScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

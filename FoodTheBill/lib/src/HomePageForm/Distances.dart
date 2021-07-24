@@ -1,3 +1,5 @@
+/// This class handles all the logic for the Distances field of the form
+
 class Distances {
   List<String>? distances;
   String? curr;
@@ -12,6 +14,7 @@ class Distances {
   final int farDist = 10000;
   Map<String, int>? distanceTable;
 
+  /// Constructor of the Distances class
   Distances() {
     distances = [placeHolder, nearest, nearer, near, far];
     distanceTable = {
@@ -23,13 +26,19 @@ class Distances {
     curr = placeHolder;
   }
 
+  /// Returns the available distances that can be chosen
+
   List<String>? getDistances() {
     return distances;
   }
 
+  /// Returns the current distance selected, including the placeholder,
+
   String? getCurr() {
     return curr;
   }
+
+  /// Returns the integer value of the distance selected
 
   int getDistance() {
     return distanceTable![curr]!;

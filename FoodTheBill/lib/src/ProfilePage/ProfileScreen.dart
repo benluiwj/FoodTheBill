@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../ProfilePage/ProfileScreenBody.dart';
 
+/// This class contains the basic layout of the profile page of the user
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
