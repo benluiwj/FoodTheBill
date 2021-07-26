@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:milestone1/src/HomePageForm/FoodQuery.dart';
 import 'package:milestone1/src/ProfilePage/ProfileScreen.dart';
+import 'package:milestone1/src/Secondpage/RecommendationLogic.dart';
 import 'package:milestone1/src/Secondpage/SecondPageHeader.dart';
 //import 'package:milestone1/src/Secondpage/Recommendation.dart';
 import 'RecommendationSingle.dart';
@@ -10,7 +11,11 @@ import 'RecommendationList.dart';
 
 class SecondPage extends StatelessWidget {
   final FoodQuery? query;
-  SecondPage({Key? key, this.query}) : super(key: key);
+  late final RecommendationLogic info;
+
+  SecondPage({this.query}) {
+    this.info = RecommendationLogic(query: query);
+  }
 
   /// Returns a widget that brings the user to their profile page
 
@@ -51,7 +56,7 @@ class SecondPage extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return RecommendationSingle(query: query);
+            return RecommendationSingle(query: query, info: info);
           }));
         });
   }
@@ -72,7 +77,7 @@ class SecondPage extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return RecommendationList(query: query);
+            return RecommendationList(query: query, info: info);
           }));
         });
   }

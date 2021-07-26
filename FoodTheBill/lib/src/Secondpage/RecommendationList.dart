@@ -9,12 +9,14 @@ import '../HomePageForm/FoodQuery.dart';
 
 class RecommendationList extends StatefulWidget {
   final FoodQuery? query;
-  RecommendationList({Key? key, this.query}) : super(key: key);
+  final RecommendationLogic? info;
+  RecommendationList({Key? key, this.query, this.info}) : super(key: key);
 
   @override
   RecommendationListState createState() {
     RecommendationListState res = RecommendationListState();
     res.query = query;
+    res.info = info;
     return res;
   }
 }
@@ -23,7 +25,7 @@ class RecommendationList extends StatefulWidget {
 
 class RecommendationListState extends State<RecommendationList> {
   FoodQuery? query;
-  late RecommendationLogic info;
+  late RecommendationLogic? info;
   int res = 0;
 
   /// Initialising the state together with the processing logic
@@ -31,7 +33,6 @@ class RecommendationListState extends State<RecommendationList> {
   @override
   void initState() {
     super.initState();
-    info = RecommendationLogic(query: query);
   }
 
   /// Returns a list that contains the options available
@@ -39,7 +40,7 @@ class RecommendationListState extends State<RecommendationList> {
   Widget resultList() {
     //return SliverList(delegate: SliverChildBuilderDelegate((context, index) {
     return FutureBuilder<PlacesSearchResponse>(
-        future: info.restaurants,
+        future: info!.restaurants,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text("Loading...");
@@ -48,7 +49,7 @@ class RecommendationListState extends State<RecommendationList> {
           } else {
             return ListView.builder(
                 itemBuilder: (context, index) {
-                  return info.buildTile(index, snapshot);
+                  return info!.buildTile(index, snapshot);
                 },
                 itemCount: snapshot.data!.results.length);
           }

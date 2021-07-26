@@ -12,12 +12,14 @@ import 'SecondPageHeader.dart';
 
 class RecommendationSingle extends StatefulWidget {
   final FoodQuery? query;
-  RecommendationSingle({Key? key, this.query}) : super(key: key);
+  final RecommendationLogic? info;
+  RecommendationSingle({Key? key, this.query, this.info}) : super(key: key);
 
   @override
   RecommendationSingleState createState() {
     RecommendationSingleState res = RecommendationSingleState();
     res.query = query;
+    res.info = info;
     return res;
   }
 }
@@ -26,14 +28,13 @@ class RecommendationSingle extends StatefulWidget {
 
 class RecommendationSingleState extends State<RecommendationSingle> {
   FoodQuery? query;
-  late RecommendationLogic info;
+  late RecommendationLogic? info;
 
   /// Initialising the state together with the processing logic
 
   @override
   void initState() {
     super.initState();
-    info = RecommendationLogic(query: query);
   }
 
   /// Returns a list tile that contains the random option
@@ -41,7 +42,7 @@ class RecommendationSingleState extends State<RecommendationSingle> {
   Widget randomOption() {
     return Column(children: [
       FutureBuilder<PlacesSearchResponse>(
-          future: info.restaurants,
+          future: info!.restaurants,
           builder: (context, snapshot) {
             Random index = Random();
             if (snapshot.data == null) {
@@ -54,7 +55,7 @@ class RecommendationSingleState extends State<RecommendationSingle> {
                     snapshot.data!.results;
                 int length = listOfRestaurants.length;
                 int randomNum = index.nextInt(length);
-                return info.buildTile(randomNum, snapshot);
+                return info!.buildTile(randomNum, snapshot);
               }
             }
           })
