@@ -1,4 +1,4 @@
-# foodthebillv2
+# FoodTheBill
 
 A new Flutter project.
 
