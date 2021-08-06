@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/geocoding.dart';
 import 'package:google_maps_webservice/places.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../HomePageForm/FoodQuery.dart';
 

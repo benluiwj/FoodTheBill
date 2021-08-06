@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:milestone1/src/Secondpage/FavoriteButton.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'RecommendationLogic.dart';
 
 import '../HomePageForm/FoodQuery.dart';
@@ -39,6 +40,7 @@ class RecommendationSingleState extends State<RecommendationSingle> {
   void initState() {
     super.initState();
     favRest = info!.favRest;
+    Firebase.initializeApp();
   }
 
   Widget buildTile(int index, AsyncSnapshot<PlacesSearchResponse> snapshot) {

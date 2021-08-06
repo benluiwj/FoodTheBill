@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:milestone1/src/ErrorPage.dart';
+import 'package:milestone1/src/Secondpage/FavoriteButton.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'RecommendationLogic.dart';
 
 import '../HomePageForm/FoodQuery.dart';
@@ -35,6 +37,7 @@ class RecommendationListState extends State<RecommendationList> {
   void initState() {
     super.initState();
     favRest = info!.favRest;
+    Firebase.initializeApp();
   }
 
   Widget buildTile(int index, AsyncSnapshot<PlacesSearchResponse> snapshot) {
@@ -43,7 +46,8 @@ class RecommendationListState extends State<RecommendationList> {
       ListTile(
           title: Text(result.name),
           subtitle: Text(result.vicinity!),
-          trailing: IconButton(
+          trailing: FavoriteButton(info: info, result: result),
+          /*trailing: IconButton(
               icon: Icon(Icons.favorite),
               onPressed: () {
                 setState(() {
@@ -53,7 +57,7 @@ class RecommendationListState extends State<RecommendationList> {
                     favRest!.add(result);
                 });
               },
-              color: favRest!.contains(result) ? Colors.red : null),
+              color: favRest!.contains(result) ? Colors.red : null),*/
           onTap: () async {
             String destinationEncode = Uri.encodeComponent(result.name);
             String currLocationEncode = await info!.currLocation.then((value) =>
@@ -94,6 +98,8 @@ class RecommendationListState extends State<RecommendationList> {
 
   @override
   Widget build(BuildContext context) {
+    //RecommendationSingle(query: query, info: info).createState().build(context); // naive
+    //FavoriteButton(info: info).createState().build(context);
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
