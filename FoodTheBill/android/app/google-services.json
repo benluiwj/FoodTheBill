@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451836467770",
+    "project_id": "foodthebill-a0d63",
+    "storage_bucket": "foodthebill-a0d63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451836467770:android:c70dd5caf8b1ea62bfb303",
+        "android_client_info": {
+          "package_name": "com.example.foodthebillv2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451836467770-4dn59l0m25ood99aondbkalbgbmbt5b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlRG7h4-J1CrFLd5daysMqEiKAqUwLUbg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451836467770-4dn59l0m25ood99aondbkalbgbmbt5b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
