@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:milestone1/src/Secondpage/RecommendationLogic.dart';
@@ -26,7 +27,9 @@ class SavedRestaurantsState extends State<SavedRestaurants> {
   @override
   void initState() {
     super.initState();
+
     db = FirebaseFirestore.instance;
+    Firebase.initializeApp();
   }
 
   /// Returns the individual tile of the favorite restaurant

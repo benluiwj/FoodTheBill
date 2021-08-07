@@ -88,6 +88,7 @@ class SecondPage extends StatelessWidget {
         appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
+            actions: [profileButton(context)],
             iconTheme: IconThemeData(color: Colors.black)),
         body: SingleChildScrollView(
           clipBehavior: Clip.none,
@@ -97,7 +98,6 @@ class SecondPage extends StatelessWidget {
               Header(),
               singleRecommend(context),
               listRecommend(context),
-              profileButton(context),
               //Recommended(query: this.query),
               //profileButton(context)
             ]),
