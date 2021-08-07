@@ -3,6 +3,7 @@ import 'package:milestone1/src/HomePageForm/FoodQuery.dart';
 import 'package:milestone1/src/ProfilePage/ProfileScreen.dart';
 import 'package:milestone1/src/Secondpage/RecommendationLogic.dart';
 import 'package:milestone1/src/Secondpage/SecondPageHeader.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'RecommendationSingle.dart';
 import 'RecommendationList.dart';
 
@@ -14,12 +15,13 @@ class SecondPage extends StatelessWidget {
 
   SecondPage({this.query}) {
     this.info = RecommendationLogic(query: query);
+    Firebase.initializeApp();
   }
 
   /// Returns a widget that brings the user to their profile page
 
   Widget profileButton(BuildContext context) {
-    return ElevatedButton(
+    /*return ElevatedButton(
         child: Text(
           "profile",
           style: TextStyle(
@@ -36,7 +38,29 @@ class SecondPage extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return ProfileScreen(query: query, info: info);
           }));
-        });
+        });*/
+    return Padding(
+      padding: EdgeInsets.only(right: 20.0, bottom: 10.0),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return ProfileScreen(
+                  query: query,
+                  info: info,
+                );
+              },
+            ),
+          );
+        },
+        child: Icon(
+          Icons.settings,
+          size: 30,
+        ),
+      ),
+    );
   }
 
   Widget singleRecommend(BuildContext context) {

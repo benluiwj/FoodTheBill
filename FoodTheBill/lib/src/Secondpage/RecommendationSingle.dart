@@ -9,6 +9,7 @@ import 'RecommendationLogic.dart';
 
 import '../HomePageForm/FoodQuery.dart';
 import '.././ErrorPage.dart';
+import 'SecondPage.dart';
 import 'SecondPageHeader.dart';
 
 /// This class contains the output for the single recommendations
@@ -99,7 +100,8 @@ class RecommendationSingleState extends State<RecommendationSingle> {
         appBar: AppBar(
             elevation: 0,
             backgroundColor: Colors.transparent,
-            iconTheme: IconThemeData(color: Colors.black)),
+            iconTheme: IconThemeData(color: Colors.black),
+            actions: [SecondPage(query: query).profileButton(context)]),
         body: SingleChildScrollView(
           clipBehavior: Clip.none,
           child: SafeArea(

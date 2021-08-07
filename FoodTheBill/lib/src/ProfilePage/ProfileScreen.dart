@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:milestone1/src/HomePageForm/FoodQuery.dart';
 import 'package:milestone1/src/Secondpage/RecommendationLogic.dart';
 import '../ProfilePage/ProfileScreenBody.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 /// This class contains the basic layout of the profile page of the user
 /// Modified to contain the recommendation logic as well as the food query
@@ -13,6 +14,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Firebase.initializeApp();
     return Scaffold(
       appBar: AppBar(
         title: Text(

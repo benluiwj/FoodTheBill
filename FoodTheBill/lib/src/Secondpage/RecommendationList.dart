@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:milestone1/src/ErrorPage.dart';
 import 'package:milestone1/src/Secondpage/FavoriteButton.dart';
+import 'package:milestone1/src/Secondpage/SecondPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'RecommendationLogic.dart';
@@ -100,22 +101,23 @@ class RecommendationListState extends State<RecommendationList> {
   Widget build(BuildContext context) {
     //RecommendationSingle(query: query, info: info).createState().build(context); // naive
     //FavoriteButton(info: info).createState().build(context);
+    print("built list");
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-            title: Text(
-              "FoodTheBill",
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black),
-            ),
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            iconTheme: IconThemeData(color: Colors.black),
-            flexibleSpace: Image(
-                image: AssetImage("assets/HomePageBackGround.jpg"),
-                fit: BoxFit.fill)),
+          title: Text(
+            "FoodTheBill",
+            style: TextStyle(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color: Colors.black),
+          flexibleSpace: Image(
+              image: AssetImage("assets/HomePageBackGround.jpg"),
+              fit: BoxFit.fill),
+          actions: [SecondPage(query: query).profileButton(context)],
+        ),
         body: resultList()
         //Recommended(query: this.query),
         //profileButton(context)

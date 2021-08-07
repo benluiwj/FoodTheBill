@@ -22,14 +22,13 @@ class SavedRestaurants extends StatefulWidget {
 class SavedRestaurantsState extends State<SavedRestaurants> {
   RecommendationLogic? info;
   List<PlacesSearchResult> favList = [];
-  late FirebaseFirestore db;
+  FirebaseFirestore db = FirebaseFirestore.instance;
 
   @override
   void initState() {
-    super.initState();
-
-    db = FirebaseFirestore.instance;
     Firebase.initializeApp();
+
+    super.initState();
   }
 
   /// Returns the individual tile of the favorite restaurant
