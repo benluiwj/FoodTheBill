@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodthebillv2/UniversalWidgets/FoodTheBillLogo.dart';
 
 import '../LoginPage/LoginPageWidget.dart';
@@ -41,8 +42,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
     await user!.reload();
     if (user!.emailVerified) {
       timer!.cancel();
+      Fluttertoast.showToast(
+          msg: "Email has been verified. Login with your email and password",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.white,
+          fontSize: 16.0);
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => LoginPageWidget()));
+
     }
   }
 
