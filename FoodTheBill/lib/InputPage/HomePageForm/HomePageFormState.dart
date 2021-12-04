@@ -12,9 +12,19 @@ class HomePageFormState extends State<HomePageForm> {
     'Price Range'
   ];
   final formFieldController = TextEditingController();
-  //Cuisines cuisines = Cuisines();
-  //PriceRanges price = PriceRanges();
   FoodQuery _query = new FoodQuery();
+  double CONTAINER_MARGIN = 20;
+  double HORIZONTAL_PADDING = 64;
+  double VERTICAL_PADDING = 16;
+  double FONT_SIZE = 20;
+  double LETTER_SPACING = 2.0;
+  double SUBMIT_BUTTON_MARGIN = 40;
+  int LOCATION_FIELD = 0;
+  int CUISINE_FIELD = 1;
+  int DISTANCE_FIELD = 2;
+  int PRICE_FIELD = 3;
+  String EMPTY_FIELD_MESSAGE = "Please enter";
+  String SUBMIT_BUTTON_TEXT = "HELP ME!!";
 
   @override
   void dispose() {
@@ -22,20 +32,38 @@ class HomePageFormState extends State<HomePageForm> {
     super.dispose();
   }
 
-  Widget formField(String value) {
+  String? fieldValidator(String? fieldInput) {
+    if (fieldInput == null || fieldInput.isEmpty) {
+      return EMPTY_FIELD_MESSAGE + fieldInput!.toLowerCase();
+    }
+    return null;
+  }
+
+  Widget submitButtonText() {
+    return Text(
+      SUBMIT_BUTTON_TEXT,
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: FONT_SIZE,
+        letterSpacing: LETTER_SPACING,
+        fontStyle: FontStyle.italic,
+      ),
+    );
+  }
+
+  Widget formField(String input) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.only(top: CONTAINER_MARGIN),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+        padding: EdgeInsets.symmetric(
+            horizontal: HORIZONTAL_PADDING, vertical: VERTICAL_PADDING),
         child: TextFormField(
-          validator: (val) {
-            if (val == null || val.isEmpty)
-              return "Please enter ${value.toLowerCase()}";
-            return null;
+          validator: (fieldInput) {
+            return fieldValidator(fieldInput);
           },
           decoration: InputDecoration(
             border: UnderlineInputBorder(),
-            hintText: '$value',
+            hintText: '$input',
           ),
           controller: formFieldController,
         ),
@@ -43,39 +71,51 @@ class HomePageFormState extends State<HomePageForm> {
     );
   }
 
-  Widget dropDownField(String val) {
+  Widget dropDownField(String field) {
     List<String>? res;
-    if (val == 'Cuisine') {
-      res = _query.cuisine!.getCuisines()!;
-    } else if (val == 'Price Range') {
-      res = _query.price!.getPrices()!;
-    } else {
-      res = _query.distance!.getDistances()!;
+    switch (field) {
+      case 'Cuisine':
+        res = _query.cuisine!.getCuisines()!;
+        break;
+
+      case 'Price Range':
+        res = _query.price!.getPrices()!;
+        break;
+
+      case 'Distance to restaurant':
+        res = _query.distance!.getDistances()!;
+        break;
     }
 
-    String dropDownValue = res.elementAt(0);
+    String dropDownValue = res!.elementAt(0);
 
     return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: CONTAINER_MARGIN),
         child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 64, vertical: 16),
+            padding: EdgeInsets.symmetric(
+                horizontal: HORIZONTAL_PADDING, vertical: VERTICAL_PADDING),
             child: DropdownButtonFormField<String>(
-                validator: (value) {
-                  if (value == res!.elementAt(0))
-                    return "Please enter ${val.toLowerCase()}";
-                  return null;
+                validator: (fieldInput) {
+                  return fieldValidator(fieldInput);
                 },
                 value: dropDownValue,
                 onChanged: (String? newValue) {
                   setState(() {
                     dropDownValue = newValue!;
                   });
-                  if (val == 'Cuisine')
-                    _query.setCuisine(dropDownValue);
-                  else if (val == 'Price Range')
-                    _query.setPrice(dropDownValue);
-                  else
-                    _query.setDistance(dropDownValue);
+                  switch (newValue) {
+                    case 'Cuisine':
+                      _query.setCuisine(dropDownValue);
+                      break;
+
+                    case 'Price Range':
+                      _query.setPrice(dropDownValue);
+                      break;
+
+                    case 'Distance to restaurant':
+                      _query.setDistance(dropDownValue);
+                      break;
+                  }
                 },
                 items: res.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
@@ -88,18 +128,9 @@ class HomePageFormState extends State<HomePageForm> {
   Widget submitButton() {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.all(40),
-      // padding: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.all(SUBMIT_BUTTON_MARGIN),
       child: ElevatedButton(
-          child: Text(
-            "HELP ME!!",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              letterSpacing: 2.0,
-              fontStyle: FontStyle.italic,
-            ),
-          ),
+          child: submitButtonText(),
           style: ElevatedButton.styleFrom(
             primary: Colors.black,
           ),
@@ -109,9 +140,9 @@ class HomePageFormState extends State<HomePageForm> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) {
-                  //return Body(query: _query);
-                  return RandomOrListPage(query: _query,);
-                  //return GoNext();
+                  return RandomOrListPage(
+                    query: _query,
+                  );
                 }),
               );
             }
@@ -125,10 +156,10 @@ class HomePageFormState extends State<HomePageForm> {
         key: _formKey,
         child: Column(
           children: <Widget>[
-            formField(_inputs[0]),
-            dropDownField(_inputs[1]),
-            dropDownField(_inputs[2]),
-            dropDownField(_inputs[3]),
+            formField(_inputs[LOCATION_FIELD]),
+            dropDownField(_inputs[CUISINE_FIELD]),
+            dropDownField(_inputs[DISTANCE_FIELD]),
+            dropDownField(_inputs[PRICE_FIELD]),
             submitButton(),
           ],
         ));
